@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Star Clicker</string>
+    <string name="score_format">Punkty: %d</string>
+</resources>
