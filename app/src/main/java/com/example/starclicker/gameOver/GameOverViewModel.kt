@@ -1,5 +1,6 @@
 package com.example.starclicker.gameOver
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.starclicker.database.DatabaseDao
@@ -8,23 +9,13 @@ import kotlinx.coroutines.*
 import timber.log.Timber
 
 class GameOverViewModel(private val database: DatabaseDao) : ViewModel() {
-    fun checkDatabase(){
-        // using coroutines https://stackoverflow.com/questions/59491707/how-to-wait-for-end-of-a-coroutine
-        viewModelScope.launch {
-            Timber.e("NonBlocking ${getBestScoreByPoints()} ${getBestScoreByTime()}")
-        }
-    }
+    private val bestScore = database.getBestScore()
 
-    private suspend fun getBestScoreByPoints(): Score {
-        return withContext(Dispatchers.IO){
-            database.getBestScoreByPoints()
-        }
-    }
-
-    private suspend fun getBestScoreByTime(): Score {
-        return withContext(Dispatchers.IO){
-            database.getBestScoreByTime()
-        }
+    fun checkDatabase(owner: LifecycleOwner){
+        bestScore.observe(owner, {
+            // this may fire up twice. Make sure it's not a problem
+            Timber.e("$it")
+        })
     }
 
     fun insertScore(score: Score) {

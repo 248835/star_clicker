@@ -8,9 +8,7 @@ data class Score(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
 
-    val points: Int,
-
-    val time: Long
+    val points: Int
 )
 
 @Entity(tableName = "owned_boosters_table")

@@ -34,8 +34,8 @@ class GameOverFragment : Fragment() {
                 .navigate(GameOverFragmentDirections.actionGameOverFragmentToGameFragment(args.difficultyLevel))
         }
 
-        viewModel.insertScore(Score(points = args.score, time = args.time))
-        viewModel.checkDatabase()
+        viewModel.insertScore(Score(points = args.score))
+        viewModel.checkDatabase(this)
 
         return binding.root
     }

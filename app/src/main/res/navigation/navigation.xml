@@ -38,9 +38,6 @@
             android:name="score"
             app:argType="integer" />
         <argument
-            android:name="time"
-            app:argType="long" />
-        <argument
             android:name="difficultyLevel"
             app:argType="com.example.starclicker.title.DifficultyLevel" />
     </fragment>

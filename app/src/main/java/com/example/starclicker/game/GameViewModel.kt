@@ -21,10 +21,6 @@ class GameViewModel(val database: DatabaseDao) : ViewModel() {
     val score: LiveData<Int>
         get() = _score
 
-    private var _time = SystemClock.elapsedRealtime()
-    val time: Long
-        get() = SystemClock.elapsedRealtime() - _time
-
     private val _progressBar = MutableLiveData(100)
     val progressBar: LiveData<Int>
         get() = _progressBar

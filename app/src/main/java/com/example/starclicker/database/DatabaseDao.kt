@@ -12,13 +12,10 @@ interface DatabaseDao {
     suspend fun insertScore(score: Score)
 
     @Query("SELECT * FROM score_table ORDER BY points DESC LIMIT 1")
-    suspend fun getBestScoreByPoints(): Score
-
-    @Query("SELECT * FROM score_table ORDER BY time LIMIT 1")
-    suspend fun getBestScoreByTime(): Score
+    fun getBestScore(): LiveData<Score>
 
     @Query("SELECT SUM(points) FROM score_table")
-    suspend fun getPointsSum(): Long
+    fun getPointsSum(): LiveData<Long>
 
     @Insert
     suspend fun insertOwnedBoosters(ownedBooster: OwnedBooster)

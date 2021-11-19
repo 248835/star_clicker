@@ -48,7 +48,6 @@ class GameFragment : Fragment() {
             binding.root.findNavController().navigate(
                 GameFragmentDirections.actionGameFragmentToGameOverFragment(
                     viewModel.score.value ?: 0,
-                    viewModel.time,
                     args.difficultyLevel
                 )
             )
