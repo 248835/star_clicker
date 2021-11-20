@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import com.example.starclicker.R
 import com.example.starclicker.database.StarClickerDatabase
 import com.example.starclicker.databinding.GameFragmentBinding
-import com.example.starclicker.dialogs.BoostDialog
+import com.example.starclicker.dialogs.boost.BoostDialog
 import com.example.starclicker.ui.starView.StarView
 import com.example.starclicker.ViewModelFactory
 

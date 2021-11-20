@@ -20,3 +20,16 @@ data class OwnedBooster(
 
     val isUsable: Boolean
 )
+
+@Entity(tableName = "booster_table")
+data class Booster(
+    // unique - on conflict gets replaced
+    @PrimaryKey
+    val id: Long,
+
+    val name: String,
+
+    val description: String,
+
+    val price: Int
+)

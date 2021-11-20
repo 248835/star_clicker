@@ -1,17 +1,12 @@
 package com.example.starclicker.game
 
-import android.os.SystemClock
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.starclicker.database.DatabaseDao
-import com.example.starclicker.database.Score
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 class GameViewModel(val database: DatabaseDao) : ViewModel() {
 

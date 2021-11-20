@@ -6,8 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Score::class, OwnedBooster::class],
-    version = 2,
+    entities = [Score::class, OwnedBooster::class, Booster::class],
+    version = 3,
     exportSchema = false
 )
 abstract class StarClickerDatabase: RoomDatabase() {
