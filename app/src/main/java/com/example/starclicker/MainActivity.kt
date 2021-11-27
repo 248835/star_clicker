@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 ),
                 Booster(
                     id = 2,
-                    name = "Booster 2",
+                    name = "Booster 2 z dluga nazwa",
                     description = "Zajebisty booster 2 xd",
                     price = 234
                 )

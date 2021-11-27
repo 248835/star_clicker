@@ -5,4 +5,5 @@ import com.example.starclicker.database.DatabaseDao
 
 class BoostViewModel(val database: DatabaseDao) : ViewModel()  {
     val boosters = database.getAllBoosters()
+
 }
