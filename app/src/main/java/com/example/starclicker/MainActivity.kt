@@ -42,9 +42,21 @@ class MainActivity : AppCompatActivity() {
                 ),
                 Booster(
                     id = 2,
-                    name = "Booster 2",
-                    description = "Zajebisty booster 2 xd",
+                    name = "Booster 2 z dluga nazwa",
+                    description = "Zajebisty booster 2 xd z opisem, który na potrzeby tego widoku nazywamy długim",
                     price = 234
+                ),
+                Booster(
+                    id = 3,
+                    name = "Booster 3 z dluga nazwa",
+                    description = "Zajebisty booster 2 xd z opisem, który na potrzeby tego widoku nazywamy długim",
+                    price = 9999
+                ),
+                Booster(
+                    id = 4,
+                    name = "Booster 4 z dluga nazwa",
+                    description = "Zajebisty booster 2 xd z opisem, który na potrzeby tego widoku nazywamy długim",
+                    price = 0
                 )
             ).forEach {
                 database.insertBooster(it)

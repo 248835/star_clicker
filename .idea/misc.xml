@@ -4,6 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../.gradle/caches/transforms-3/a41f65a1b182ec9e11a9bbe3d48996cb/transformed/appcompat-1.3.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/drawable/boost_dialog_bg.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/drawable/booster_row_bg.xml" value="0.25" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/drawable/booster_row_buy_btn_bg.xml" value="0.25" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/drawable/booster_row_buy_btn_ripple.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/drawable/booster_row_icon_placeholder.xml" value="0.25" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/drawable/coin.xml" value="0.24814814814814815" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/drawable/help.xml" value="0.3828125" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/drawable/help_bg.xml" value="0.3828125" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/layout/activity_main.xml" value="0.31023550724637683" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/layout/boost_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/layout/boost_info_dialog.xml" value="0.3070652173913043" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/layout/boost_info_row.xml" value="0.67" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/layout/booster_info_row.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/layout/booster_row.xml" value="0.5" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/layout/boosters_dialog.xml" value="0.5" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/layout/boosters_info_dialog.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Konrad/Documents/Studia/7 Semestr/Interfejsy mobilne/Projekt2/star_clicker/app/src/main/res/layout/star_view.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/game_over_fragment_background.xml" value="0.28717948717948716" />
         <entry key="app/src/main/res/drawable/ic_baseline_special_star_24.xml" value="0.28717948717948716" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_rate_24.xml" value="0.37135416666666665" />
@@ -22,7 +39,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

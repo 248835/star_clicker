@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import com.example.starclicker.R
 import com.example.starclicker.database.StarClickerDatabase
 import com.example.starclicker.databinding.GameFragmentBinding
-import com.example.starclicker.dialogs.boost.BoostDialog
+import com.example.starclicker.dialogs.boosters.shop.BoostersDialog
 import com.example.starclicker.ui.starView.StarView
 import com.example.starclicker.ViewModelFactory
 
@@ -29,7 +29,9 @@ class GameFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container, false)
 
         binding.boostButton.setOnClickListener {
-            BoostDialog.newInstance().show(childFragmentManager, "boost")
+            starView.stopStars()
+            val boostDialog = BoostersDialog.newInstance(onExit = {starView.startStars()})
+            boostDialog.show(childFragmentManager, "boost")
         }
 
         val args = GameFragmentArgs.fromBundle(requireArguments())
