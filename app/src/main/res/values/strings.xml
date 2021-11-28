@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Star Clicker</string>
     <string name="score_format">Punkty: %d</string>
+    <string name="price_format">Cena: %d</string>
     <string name="buy">KUP</string>
     <string name="booster_name_placeholder">NAZWA BOOSTERA</string>
     <string name="price_placeholder">9999</string>

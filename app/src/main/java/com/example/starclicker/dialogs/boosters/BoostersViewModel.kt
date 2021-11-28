@@ -1,4 +1,4 @@
-package com.example.starclicker.dialogs.boosters.shop
+package com.example.starclicker.dialogs.boosters
 
 import androidx.lifecycle.ViewModel
 import com.example.starclicker.database.DatabaseDao
