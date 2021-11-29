@@ -8,4 +8,5 @@
     <string name="shop">SKLEP</string>
     <string name="boosts_types">Rodzaje boost\'ów</string>
     <string name="booster_desc_placeholder">Opis boostera</string>
+    <string name="price">Cena</string>
 </resources>

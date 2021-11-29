@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Booster row dimensions -->
-    <dimen name="booster_row_height">70dp</dimen>
+    <dimen name="booster_row_height">80dp</dimen>
     <dimen name="booster_row_radius">20dp</dimen>
     <dimen name="booster_row_buy_btn_width">70dp</dimen>
     <dimen name="booster_row_buy_btn_radius">12dp</dimen>

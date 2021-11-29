@@ -11,6 +11,9 @@ import com.example.starclicker.ViewModelFactory
 import com.example.starclicker.database.StarClickerDatabase
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import timber.log.Timber
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+
 
 class BoostersDialog private constructor(private val onExit : (() -> Unit)?) : DialogFragment(){
     private lateinit var viewModel: BoostersViewModel
@@ -27,7 +30,18 @@ class BoostersDialog private constructor(private val onExit : (() -> Unit)?) : D
             Timber.e("Selected booster ID $it")
             dismiss()
         }
-        dialogContentView.findViewById<RecyclerView>(R.id.boosts_recycler_view).adapter = adapter
+
+        val layoutManager = LinearLayoutManager(context)
+
+        val recyclerView = dialogContentView.findViewById<RecyclerView>(R.id.boosts_recycler_view)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = layoutManager
+
+        val mDividerItemDecoration = DividerItemDecoration(
+            recyclerView.getContext(),
+            layoutManager.orientation
+        )
+        recyclerView.addItemDecoration(mDividerItemDecoration)
 
         viewModel.boosters.observe(this, { list ->
             Timber.e("$list")
@@ -38,8 +52,9 @@ class BoostersDialog private constructor(private val onExit : (() -> Unit)?) : D
 
         return MaterialAlertDialogBuilder(requireContext())
             .setView(dialogContentView)
-            .setBackground(AppCompatResources.getDrawable(context!!, R.drawable.boosters_dialog_bg))
-//            .setPositiveButton("OK") { _, _ -> onExit?.invoke() }
+            .setTitle(R.string.shop)
+            //.setBackground(AppCompatResources.getDrawable(context!!, R.drawable.boosters_dialog_bg))
+            .setPositiveButton("OK") { _, _ -> onExit?.invoke() }
             .setOnDismissListener { onExit?.invoke() }
             .create()
     }
