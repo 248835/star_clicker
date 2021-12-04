@@ -50,10 +50,11 @@
         android:text="Zarejestruj się"
         android:textColor="@color/white"/>
     <TextView
-        android:id="@+id/tvSignUp"
+        android:id="@+id/tvSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Jeśli masz konto, zaloguj się."/>
+        android:textColor="@color/design_default_color_primary"
+        android:text="Dotknij tutaj, aby zalogować się."/>
 
 </LinearLayout>

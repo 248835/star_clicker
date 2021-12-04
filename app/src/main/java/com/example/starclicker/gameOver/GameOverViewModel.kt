@@ -31,15 +31,8 @@ import java.lang.Exception
 import java.util.HashMap
 
 class GameOverViewModel(private val database: DatabaseDao) : ViewModel() {
-    private val bestScore = database.getBestScore()
+    val bestScore = database.getBestScore()
     private val firebaseAuth = FirebaseAuth.getInstance()
-
-    fun checkDatabase(owner: LifecycleOwner){
-        bestScore.observe(owner, {
-            // this may fire up twice. Make sure it's not a problem
-            Timber.e("$it")
-        })
-    }
 
     fun insertScore(score: Score) {
         viewModelScope.launch {
@@ -86,7 +79,7 @@ class GameOverViewModel(private val database: DatabaseDao) : ViewModel() {
                 val ref = FirebaseDatabase.getInstance().getReference("Users").child(firebaseAuth.currentUser?.uid!!)
                 ref.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        val remoteBestScore = snapshot.child("score").value as Int
+                        val remoteBestScore = (snapshot.child("score").value as Long).toInt()
                         if(score>remoteBestScore){
                             ref.child("score").setValue(score)
                         }

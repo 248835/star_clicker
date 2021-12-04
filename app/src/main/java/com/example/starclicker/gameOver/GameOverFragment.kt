@@ -2,9 +2,9 @@ package com.example.starclicker.gameOver
 
 import android.os.Bundle
 import android.view.*
-import androidx.annotation.VisibleForTesting
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,13 +21,14 @@ import java.util.ArrayList
 
 class GameOverFragment : Fragment() {
     private lateinit var viewModel: GameOverViewModel
+    private lateinit var binding: GameOverFragmentBinding
     private val firebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: GameOverFragmentBinding =
+        binding =
             DataBindingUtil.inflate(inflater, R.layout.game_over_fragment, container, false)
 
         val args = GameOverFragmentArgs.fromBundle(requireArguments())
@@ -51,22 +52,21 @@ class GameOverFragment : Fragment() {
         users = ArrayList()
         val mainRef = FirebaseDatabase.getInstance().getReference("Users")
 
-        binding.tvScore.setText(args.score.toString())
+        binding.tvScore.text = args.score.toString()
+
+        viewModel.insertScore(Score(points = args.score))
 
         if(firebaseAuth.currentUser != null) {
             binding.tvName.visibility = View.VISIBLE
-            binding.tvBestScore.visibility = View.VISIBLE
             binding.btnFirebaseSignIn.visibility = View.GONE
             binding.tvSignIn.visibility = View.GONE
             val ref = mainRef.child(firebaseAuth.currentUser?.uid!!)
             ref.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    binding.tvName.setText(snapshot.child("name").value.toString()+",")
+                    binding.tvName.text = snapshot.child("name").value.toString()+","
                     val remoteBestScore = (snapshot.child("score").value as Long).toInt()
-                    binding.tvBestScore.visibility = View.VISIBLE
-                    binding.tvBestScore.text = "Twój najlepszy wynik to: "+remoteBestScore.toString()
+                    setBestScore(remoteBestScore)
                     if(args.score>remoteBestScore){
-                        binding.tvBestScore.text = "Twój najlepszy wynik to: "+args.score.toString()
                         ref.child("score").setValue(args.score).addOnCompleteListener {
                             setRecyclerView(mainRef, users, binding)
                         }
@@ -79,18 +79,27 @@ class GameOverFragment : Fragment() {
             })
         } else {
             binding.tvName.visibility = View.GONE
-            binding.tvBestScore.visibility = View.GONE
             binding.btnFirebaseSignIn.visibility = View.VISIBLE
             binding.tvSignIn.visibility = View.VISIBLE
+            setBestScore(0)
             setRecyclerView(mainRef, users, binding)
         }
 
         binding.btnFirebaseSignIn.setOnClickListener{viewModel.showSignInDialog(requireContext(), args.score)}
 
-        //viewModel.insertScore(Score(points = args.score))
-        ////viewModel.checkDatabase(this)
-
         return binding.root
+    }
+
+    fun setBestScore(
+        remoteBestScore: Int
+    ) {
+        viewModel.bestScore.observe(this, {
+            if(it.points>remoteBestScore){
+                binding.tvBestScore.text = "Twój najlepszy wynik to: "+it.points.toString()
+            } else {
+                binding.tvBestScore.text = "Twój najlepszy wynik to: "+remoteBestScore.toString()
+            }
+        })
     }
 
     fun setRecyclerView(mainRef: DatabaseReference, users: MutableList<ModelUser?>, binding: GameOverFragmentBinding){

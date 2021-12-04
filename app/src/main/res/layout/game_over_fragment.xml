@@ -32,8 +32,7 @@
             android:id="@+id/tvBestScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Twój najlepszy wynik to: "
-            android:visibility="gone"/>
+            android:text="Twój najlepszy wynik to: "/>
         <Button
             android:id="@+id/again"
             android:layout_marginTop="10dp"
