@@ -47,7 +47,6 @@ class TitleViewModel : ViewModel() {
             btnSignOut.visibility = View.VISIBLE
             view.findViewById<View>(R.id.btnSignOut).setOnClickListener { v: View? ->
                 FirebaseAuth.getInstance().signOut()
-
                 alertDialog.dismiss()
             }
         }
