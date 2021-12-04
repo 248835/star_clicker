@@ -126,7 +126,7 @@ class GameOverViewModel(private val database: DatabaseDao) : ViewModel() {
                 tietName.error = "No name"
             }
         }
-        view.findViewById<View>(R.id.tvSignUp).setOnClickListener { v: View? ->
+        view.findViewById<View>(R.id.tvSignIn).setOnClickListener { v: View? ->
             showSignInDialog(context, score)
             alertDialog.dismiss()
         }
