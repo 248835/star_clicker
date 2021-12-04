@@ -12,7 +12,6 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
@@ -46,6 +45,7 @@ class StarView @JvmOverloads constructor(
 
     fun startStars(){
         viewModel.start()
+        viewModel.shower { createStar() }
     }
 
     fun stopStars(){
