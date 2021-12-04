@@ -17,6 +17,7 @@ import com.example.starclicker.rankingRv.AdapterUser
 import com.example.starclicker.rankingRv.ModelUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ValueEventListener
 import java.util.ArrayList
 
 class GameOverFragment : Fragment() {

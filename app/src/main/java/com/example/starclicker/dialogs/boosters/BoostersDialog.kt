@@ -59,6 +59,11 @@ class BoostersDialog private constructor(private val onExit : (() -> Unit)?) : D
             .create()
     }
 
+    override fun onDestroy() {
+        onExit?.invoke()
+        super.onDestroy()
+    }
+
     companion object {
         fun newInstance(onExit: (() -> Unit)? = null): BoostersDialog {
             return BoostersDialog(onExit)
