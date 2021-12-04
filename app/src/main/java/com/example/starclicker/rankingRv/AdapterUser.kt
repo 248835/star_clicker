@@ -16,7 +16,7 @@ internal class AdapterUser(private val context: Context, private val users: Muta
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        holder.tvName.text = (position+1).toString()+". "+users[position]?.getName()
+        holder.tvName.text = (users.size-position).toString()+". "+users[position]?.getName()
         holder.tvScore.text = users[position]?.getScore().toString()
     }
 

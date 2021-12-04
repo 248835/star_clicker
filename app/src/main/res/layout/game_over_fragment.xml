@@ -10,16 +10,22 @@
         android:layout_margin="16dp"
         android:background="@drawable/game_over_fragment_background">
         <TextView
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
+            android:textSize="30sp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
             android:textColor="@color/black"
-            android:text="Uzyskałeś wynik"/>
+            android:text="uzyskałeś wynik"/>
         <TextView
             android:id="@+id/tvScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:textColor="@color/black"
             android:text="0"/>
         <TextView
@@ -39,31 +45,34 @@
             android:layout_height="wrap_content"
             android:text="Ranking"
             android:textColor="@color/black"
-            android:textSize="40sp"/>
+            android:textSize="30sp"/>
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardElevation="10dp"
-            app:cardCornerRadius="20dp"
+            app:cardCornerRadius="10dp"
             app:cardBackgroundColor="@color/white"
             app:cardMaxElevation="12dp"
+            android:backgroundTint="@color/design_default_color_secondary"
             app:cardPreventCornerOverlap="true">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRanks"
                 android:layout_width="300dp"
-                android:layout_height="200dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                android:layout_height="200dp"/>
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:layout_marginTop="20dp"
             android:id="@+id/btnFirebaseSignIn"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:text="Zaloguj się"/>
         <TextView
+            android:id="@+id/tvSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:text="Jeśli chcesz zapisać swój wynik w rankingu, zaloguj się"/>
 
     </LinearLayout>
