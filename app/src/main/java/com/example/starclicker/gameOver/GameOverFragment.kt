@@ -88,7 +88,7 @@ class GameOverFragment : Fragment() {
         binding.btnFirebaseSignIn.setOnClickListener{viewModel.showSignInDialog(requireContext(), args.score)}
 
         //viewModel.insertScore(Score(points = args.score))
-        //viewModel.checkDatabase(this)
+        ////viewModel.checkDatabase(this)
 
         return binding.root
     }
