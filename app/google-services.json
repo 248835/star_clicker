@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "624796938018",
+    "firebase_url": "https://starclicker-18b77-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "starclicker-18b77",
+    "storage_bucket": "starclicker-18b77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624796938018:android:cfdd55be5906edd730ff7b",
+        "android_client_info": {
+          "package_name": "com.example.starclicker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624796938018-v7c39o8cg62sniboa50a39cuf5o47u22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXFJ0e3X3_BKh-h4rmF7vOGvDsgsRC15A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624796938018-v7c39o8cg62sniboa50a39cuf5o47u22.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

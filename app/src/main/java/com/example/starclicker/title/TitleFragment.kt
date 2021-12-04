@@ -1,7 +1,9 @@
 package com.example.starclicker.title
 
 import android.animation.ObjectAnimator
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Patterns
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
@@ -13,6 +15,8 @@ import androidx.navigation.ui.NavigationUI
 import com.example.starclicker.R
 import com.example.starclicker.databinding.TitleFragmentBinding
 import com.example.starclicker.dialogs.InfoDialog
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 
 class TitleFragment : Fragment() {
 
@@ -43,6 +47,10 @@ class TitleFragment : Fragment() {
 
         binding.questionButton.setOnClickListener {
             InfoDialog.newInstance().show(parentFragmentManager,"instruction")
+        }
+
+        binding.accountButton.setOnClickListener {
+            viewModel.showUserMenuDialog(requireContext())
         }
 
         return binding.root

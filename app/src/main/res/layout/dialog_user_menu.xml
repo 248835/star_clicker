@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="20dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardMaxElevation="12dp"
+    app:cardPreventCornerOverlap="true"
+    android:padding="10dp"
+    android:gravity="center_horizontal">
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Zaloguj się"
+        android:textColor="@color/white"/>
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Zarejestruj się"
+        android:textColor="@color/white"/>
+    <Button
+        android:id="@+id/btnSignOut"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Wyloguj się"
+        android:textColor="@color/white"/>
+
+</LinearLayout>
