@@ -26,6 +26,7 @@ class StarView @JvmOverloads constructor(
 
     private var onStarClickListener: OnClickListener? = null
     private var onSpecialStarClickListener: OnClickListener? = null
+    private val stars : MutableList<View> = mutableListOf()
 
     init {
         inflate(context, R.layout.star_view,this)
@@ -58,6 +59,11 @@ class StarView @JvmOverloads constructor(
 
     fun createSpecialStar(){
         createStar(StarType.SPECIAL)
+    }
+
+    fun clearStars(){
+        val container = star.parent as ViewGroup
+        stars.forEach{container.removeView(it)}
     }
 
     // todo remove star from view
@@ -96,6 +102,7 @@ class StarView @JvmOverloads constructor(
         }
 
         container.addView(newStar)
+        stars.add(newStar)
 
         val mover = ObjectAnimator.ofFloat(
             newStar, View.TRANSLATION_Y,

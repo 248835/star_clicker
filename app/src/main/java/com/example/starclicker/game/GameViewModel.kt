@@ -5,12 +5,31 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.starclicker.database.DatabaseDao
+import com.example.starclicker.gameOver.GameOverViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class GameViewModel(val database: DatabaseDao) : ViewModel() {
 
     private var _starDelay = 1000L
+
+
+    fun startCountdown(onCountdownChange : (countdown : Int) -> Unit){
+        viewModelScope.launch {
+            var countdown = 3
+
+            onCountdownChange(countdown)
+            while(countdown > 0) {
+                delay(COUNTDOWN_PERIOD)
+                countdown--
+                onCountdownChange(countdown)
+            }
+        }
+    }
+
+    companion object {
+        private const val COUNTDOWN_PERIOD = 1000L
+    }
 
     private val _score = MutableLiveData(0)
     val score: LiveData<Int>

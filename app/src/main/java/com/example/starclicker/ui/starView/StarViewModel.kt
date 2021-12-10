@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class StarViewModel: ViewModel() {
 
@@ -28,8 +29,8 @@ class StarViewModel: ViewModel() {
     fun shower(star: () -> Unit) {
         viewModelScope.launch {
             while (_isRunning) {
-                delay(_starDelay)
                 star.invoke()
+                delay(_starDelay)
             }
         }
     }

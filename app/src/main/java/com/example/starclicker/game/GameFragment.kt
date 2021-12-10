@@ -1,9 +1,12 @@
 package com.example.starclicker.game
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -21,6 +24,8 @@ class GameFragment : Fragment() {
     private lateinit var viewModel: GameViewModel
     private lateinit var binding: GameFragmentBinding
     private lateinit var starView: StarView
+    private lateinit var countdownTextView: TextView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +67,31 @@ class GameFragment : Fragment() {
         viewModel.randomValues()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        countdownTextView = view.findViewById(R.id.countdownTextView)
+
+        starView.clearStars()
+        starView.stopStars()
+        viewModel.startCountdown { countdown ->
+            if(countdown > 0)
+                countdownTextView.text = countdown.toString()
+            else{
+                starView.startStars()
+
+                countdownTextView.text = "Start"
+                countdownTextView.animate()
+                    .alpha(0f)
+                    .setDuration(1000L)
+                    .setListener(object : AnimatorListenerAdapter() {
+                        override fun onAnimationEnd(animation: Animator) {
+                            countdownTextView.visibility = View.GONE
+                        }
+                    })
+            }
+        }
     }
 
     override fun onDestroyView() {
