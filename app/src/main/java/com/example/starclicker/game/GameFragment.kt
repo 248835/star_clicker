@@ -2,6 +2,7 @@ package com.example.starclicker.game
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class GameFragment : Fragment() {
     private lateinit var binding: GameFragmentBinding
     private lateinit var starView: StarView
     private lateinit var countdownTextView: TextView
+    private lateinit var shakeNotificationTextView: TextView
 
 
     override fun onCreateView(
@@ -66,6 +68,7 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         countdownTextView = view.findViewById(R.id.countdownTextView)
+        shakeNotificationTextView = view.findViewById(R.id.shakeNotificationTextView)
 
         starView.clearStars()
         starView.stopStars()
@@ -86,6 +89,26 @@ class GameFragment : Fragment() {
                     })
             }
         }
+    }
+
+    private fun showShakeNotification(){
+        shakeNotificationTextView.alpha = 0f
+        shakeNotificationTextView.visibility = View.VISIBLE
+        shakeNotificationTextView.animate()
+            .setDuration(300L)
+            .alpha(1f)
+    }
+
+    private fun hideShakeNotification(){
+        shakeNotificationTextView.alpha = 1f
+        shakeNotificationTextView.animate()
+            .setDuration(300L)
+            .alpha(0f)
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    shakeNotificationTextView.visibility = View.GONE
+                }
+            })
     }
 
     override fun onDestroyView() {
