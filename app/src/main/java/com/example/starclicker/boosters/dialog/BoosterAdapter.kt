@@ -1,14 +1,17 @@
-package com.example.starclicker.dialogs.boosters
+package com.example.starclicker.boosters.dialog
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.Transformations
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.starclicker.database.Booster
+import com.example.starclicker.R
+import com.example.starclicker.boosters.Booster
 import com.example.starclicker.databinding.BoosterItemBinding
+import com.google.android.material.color.MaterialColors
 
-class BoosterAdapter(private val listener: (Long) -> Unit) :
+class BoosterAdapter(private val listener: (Booster) -> Unit) :
     ListAdapter<Booster, BoosterAdapter.ViewHolder>(BoosterDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,20 +24,28 @@ class BoosterAdapter(private val listener: (Long) -> Unit) :
 
     class ViewHolder private constructor(
         private val binding: BoosterItemBinding,
-        private val listener: (Long) -> Unit
+        private val listener: (Booster) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Booster) {
             binding.root.setOnClickListener{
-                listener.invoke(item.id)
+                listener.invoke(item)
             }
             binding.booster = item
+
+            Transformations.map(item.active) {
+                if (it == false)
+                    binding.root.setBackgroundColor(MaterialColors.getColor(binding.root,R.attr.colorOnPrimary))
+            }
+            if (item.active.value == true)
+                binding.root.setBackgroundColor(MaterialColors.getColor(binding.root,R.attr.colorPrimary))
+
             binding.executePendingBindings()
         }
 
         companion object {
-            fun from(parent: ViewGroup, listener: (Long) -> Unit): ViewHolder {
+            fun from(parent: ViewGroup, listener: (Booster) -> Unit): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = BoosterItemBinding.inflate(layoutInflater, parent, false)
 
@@ -45,7 +56,7 @@ class BoosterAdapter(private val listener: (Long) -> Unit) :
 
     private class BoosterDiffCallback : DiffUtil.ItemCallback<Booster>() {
         override fun areItemsTheSame(oldItem: Booster, newItem: Booster): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(oldItem: Booster, newItem: Booster): Boolean {

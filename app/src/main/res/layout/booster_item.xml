@@ -7,7 +7,7 @@
 
         <variable
             name="booster"
-            type="com.example.starclicker.database.Booster" />
+            type="com.example.starclicker.boosters.Booster" />
     </data>
 
     <LinearLayout

@@ -9,7 +9,7 @@ import com.example.starclicker.gameOver.GameOverViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class GameViewModel(val database: DatabaseDao) : ViewModel() {
+class GameViewModel() : ViewModel() {
 
     private var _starDelay = 1000L
 

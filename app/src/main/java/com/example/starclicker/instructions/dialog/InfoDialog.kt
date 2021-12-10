@@ -1,4 +1,4 @@
-package com.example.starclicker.dialogs
+package com.example.starclicker.instructions.dialog
 
 import android.app.Dialog
 import android.os.Bundle

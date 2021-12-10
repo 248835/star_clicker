@@ -10,18 +10,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.starclicker.R
-import com.example.starclicker.database.StarClickerDatabase
 import com.example.starclicker.databinding.GameFragmentBinding
-import com.example.starclicker.dialogs.boosters.BoostersDialog
+import com.example.starclicker.boosters.Boosters
+import com.example.starclicker.boosters.dialog.BoostersDialog
 import com.example.starclicker.ui.starView.StarView
-import com.example.starclicker.ViewModelFactory
 
 class GameFragment : Fragment() {
 
-    private lateinit var viewModel: GameViewModel
+    private val viewModel: GameViewModel by viewModels()
     private lateinit var binding: GameFragmentBinding
     private lateinit var starView: StarView
     private lateinit var countdownTextView: TextView
@@ -40,11 +39,6 @@ class GameFragment : Fragment() {
         }
 
         val args = GameFragmentArgs.fromBundle(requireArguments())
-
-        val datasource = StarClickerDatabase.getInstance(requireActivity().application).databaseDao
-        val viewModelFactory = ViewModelFactory(datasource)
-
-        viewModel = ViewModelProvider(this, viewModelFactory)[GameViewModel::class.java]
 
         binding.gameViewModel = viewModel
         binding.lifecycleOwner = this
@@ -98,5 +92,7 @@ class GameFragment : Fragment() {
         super.onDestroyView()
         starView.setOnSpecialStarClickListener(null)
         starView.setOnStarClickListener(null)
+
+        Boosters.clearBoosters()
     }
 }
