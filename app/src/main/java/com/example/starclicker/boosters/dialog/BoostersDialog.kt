@@ -24,7 +24,7 @@ class BoostersDialog private constructor(private val onExit: (() -> Unit)?) : Di
                 it.active.value = true
                 dismiss()
             }.apply {
-                submitList(Boosters.boosters)
+                submitList(Boosters.boosters.sortedBy { it.price })
             }
         }
 

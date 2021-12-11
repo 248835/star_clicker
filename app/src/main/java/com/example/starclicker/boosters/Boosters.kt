@@ -5,24 +5,19 @@ import androidx.lifecycle.MutableLiveData
 object Boosters {
     val boosters = listOf(
         Booster(
-            name = "Booster 1",
-            description = "Zajebisty booster 1 xd",
-            price = 123
+            name = "Centrum",
+            description = "Gwiazdki spajają tylko blisko środka ekranu",
+            price = 100
         ),
         Booster(
-            name = "Booster 2 z dluga nazwa",
-            description = "Zajebisty booster 2 xd z opisem, który na potrzeby tego widoku nazywamy długim",
-            price = 234
+            name = "Powiększenie",
+            description = "Zwiększa rozmiar gwiazdek",
+            price = 200
         ),
         Booster(
-            name = "Booster 3 z dluga nazwa",
-            description = "Zajebisty booster 2 xd z opisem, który na potrzeby tego widoku nazywamy długim",
-            price = 9999
-        ),
-        Booster(
-            name = "Booster 4 z dluga nazwa",
-            description = "Zajebisty booster 2 xd z opisem, który na potrzeby tego widoku nazywamy długim",
-            price = 0
+            name = "Spowolnienie",
+            description = "Zmniejsza prędkość gwiazdek",
+            price = 300
         ),
     )
 
