@@ -2,11 +2,16 @@ package com.example.starclicker.game
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.opengl.Visibility
+import android.content.Context
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -18,8 +23,9 @@ import com.example.starclicker.databinding.GameFragmentBinding
 import com.example.starclicker.boosters.Boosters
 import com.example.starclicker.boosters.dialog.BoostersDialog
 import com.example.starclicker.ui.starView.StarView
+import timber.log.Timber
 
-class GameFragment : Fragment() {
+class GameFragment : Fragment(), SensorEventListener {
 
     private val viewModel: GameViewModel by viewModels()
     private lateinit var binding: GameFragmentBinding
@@ -27,6 +33,34 @@ class GameFragment : Fragment() {
     private lateinit var countdownTextView: TextView
     private lateinit var shakeNotificationTextView: TextView
 
+    private lateinit var sensorManager : SensorManager
+    private var accSensor: Sensor? = null
+
+    override fun onSensorChanged(event : SensorEvent?) {
+        if(event == null) return
+        val verticalAcc = event.values[1]
+        viewModel.handleSensorData(verticalAcc)
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {}
+
+    override fun onResume() {
+        super.onResume()
+        accSensor!!.also { acceleration ->
+            sensorManager.registerListener(this, acceleration, SensorManager.SENSOR_DELAY_GAME)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager.unregisterListener(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sensorManager = context!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        accSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,9 +92,11 @@ class GameFragment : Fragment() {
 
         starView.setOnSpecialStarClickListener {
             Toast.makeText(requireContext(),"Yay",Toast.LENGTH_SHORT).show()
+            showShakeNotification()
+            viewModel.startShakingMode(onFinished = {hideShakeNotification()})
         }
 
-        viewModel.randomValues()
+        //viewModel.randomValues()
 
         return binding.root
     }
@@ -92,11 +128,12 @@ class GameFragment : Fragment() {
     }
 
     private fun showShakeNotification(){
-        shakeNotificationTextView.alpha = 0f
         shakeNotificationTextView.visibility = View.VISIBLE
+        shakeNotificationTextView.alpha = 0f
         shakeNotificationTextView.animate()
             .setDuration(300L)
             .alpha(1f)
+            .setListener(null)
     }
 
     private fun hideShakeNotification(){
@@ -118,4 +155,6 @@ class GameFragment : Fragment() {
 
         Boosters.clearBoosters()
     }
+
+
 }
