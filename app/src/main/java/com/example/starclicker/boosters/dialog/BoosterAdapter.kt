@@ -10,6 +10,7 @@ import com.example.starclicker.R
 import com.example.starclicker.boosters.Booster
 import com.example.starclicker.databinding.BoosterItemBinding
 import com.google.android.material.color.MaterialColors
+import timber.log.Timber
 
 class BoosterAdapter(private val listener: (Booster) -> Unit) :
     ListAdapter<Booster, BoosterAdapter.ViewHolder>(BoosterDiffCallback()) {
@@ -34,12 +35,14 @@ class BoosterAdapter(private val listener: (Booster) -> Unit) :
             }
             binding.booster = item
 
-            Transformations.map(item.active) {
+            /*Transformations.map(item.active) {
                 if (it == false)
                     binding.root.setBackgroundColor(MaterialColors.getColor(binding.root,R.attr.colorOnPrimary))
-            }
+            }*/
             if (item.active.value == true)
-                binding.root.setBackgroundColor(MaterialColors.getColor(binding.root,R.attr.colorPrimary))
+                binding.root.setBackgroundColor(MaterialColors.getColor(binding.root,R.attr.colorAccent))
+            else
+                binding.root.setBackgroundColor(MaterialColors.getColor(binding.root,R.attr.colorOnPrimary))
 
             binding.executePendingBindings()
         }
@@ -56,7 +59,7 @@ class BoosterAdapter(private val listener: (Booster) -> Unit) :
 
     private class BoosterDiffCallback : DiffUtil.ItemCallback<Booster>() {
         override fun areItemsTheSame(oldItem: Booster, newItem: Booster): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem.displayedName == newItem.displayedName
         }
 
         override fun areContentsTheSame(oldItem: Booster, newItem: Booster): Boolean {

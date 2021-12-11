@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.starclicker.boosters.Booster
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -78,8 +79,18 @@ class GameViewModel() : ViewModel() {
         }
     }
 
+
+    fun deactivateAfterDelay(booster : Booster){
+        viewModelScope.launch {
+            delay(BOOSTER_LIFE_TIME)
+            booster.active.value = false
+        }
+    }
+
     companion object {
         private const val COUNTDOWN_PERIOD = 1000L
+
+        private const val BOOSTER_LIFE_TIME = 8000L
 
         //Shaking mode constants
         private const val ACC_THRESHOLD_TO_GET_POINTS = 1f
