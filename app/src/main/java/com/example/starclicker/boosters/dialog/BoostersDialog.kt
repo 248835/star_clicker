@@ -25,23 +25,28 @@ class BoostersDialog private constructor(private val onExit: (() -> Unit)?) : Di
 
         viewModel = ViewModelProvider(this)[BoostersViewModel::class.java]
 
+        val gameViewModel: GameViewModel by viewModels(
+            ownerProducer = { requireParentFragment() }
+        )
+
         val dialogContentView = layoutInflater.inflate(R.layout.boosters_dialog, null).apply {
             recyclerView = findViewById<RecyclerView>(R.id.boosts_recycler_view)
-            recyclerView.adapter = BoosterAdapter {
+            recyclerView.adapter = BoosterAdapter({
+                if(gameViewModel.score.value!! < it.price) return@BoosterAdapter
                 Timber.e("Selected booster ID $it")
                 it.active.value = true
-                val gameViewModel: GameViewModel by viewModels(
-                    ownerProducer = { requireParentFragment() }
-                )
                 gameViewModel.deactivateAfterDelay(it)
+                gameViewModel.addPoints(-it.price)
                 dismiss()
-            }.apply {
+            }, gameViewModel.score).apply {
                 submitList(Boosters.boosters.sortedBy { it.price })
             }
 
             Boosters.boosters.forEach {
                 it.active.observe(this@BoostersDialog, {recyclerView.adapter!!.notifyDataSetChanged()})
             }
+            gameViewModel.score.observe(this@BoostersDialog, {recyclerView.adapter!!.notifyDataSetChanged()})
+
         }
 
         return MaterialAlertDialogBuilder(requireContext())

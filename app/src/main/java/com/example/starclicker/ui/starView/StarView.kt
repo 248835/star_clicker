@@ -95,8 +95,8 @@ class StarView @JvmOverloads constructor(
 
             setOnClickListener {
                 when(starType){
-                    StarType.NORMAL -> onStarClickListener?.onClick(it)
-                    StarType.SPECIAL -> onSpecialStarClickListener?.onClick(it)
+                    StarType.NORMAL -> {onStarClickListener?.onClick(it); stars.remove(this); container.removeView(this)}
+                    StarType.SPECIAL -> {onSpecialStarClickListener?.onClick(it); stars.remove(this); container.removeView(this)}
                 }
             }
         }

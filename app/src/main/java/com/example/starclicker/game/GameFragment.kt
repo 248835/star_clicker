@@ -82,12 +82,13 @@ class GameFragment : Fragment(), SensorEventListener {
         starView = requireActivity().findViewById(R.id.starView)
 
         starView.setOnStarClickListener {
-            binding.root.findNavController().navigate(
+            viewModel.addPoints(10)
+           /* binding.root.findNavController().navigate(
                 GameFragmentDirections.actionGameFragmentToGameOverFragment(
                     viewModel.score.value ?: 0,
                     args.difficultyLevel
                 )
-            )
+            )*/
         }
 
         starView.setOnSpecialStarClickListener {
