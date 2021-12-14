@@ -33,7 +33,7 @@ class StarView @JvmOverloads constructor(
 
         star = findViewById(R.id.star)
 
-        viewModel.shower { createStar() }
+        viewModel.shower({createStar()} , {createSpecialStar()})
     }
 
     fun setOnStarClickListener(clickListener: OnClickListener?){
@@ -46,18 +46,14 @@ class StarView @JvmOverloads constructor(
 
     fun startStars(){
         viewModel.start()
-        viewModel.shower { createStar() }
+        viewModel.shower({createStar()} , {createSpecialStar()})
     }
 
     fun stopStars(){
         viewModel.stop()
     }
 
-    fun setStarDelay(value: Long){
-        viewModel.setStarDelay(value)
-    }
-
-    fun createSpecialStar(){
+    private fun createSpecialStar(){
         createStar(StarType.SPECIAL)
     }
 
@@ -84,14 +80,13 @@ class StarView @JvmOverloads constructor(
                 LayoutParams.WRAP_CONTENT
             )
 
-            scaleX = Math.random().toFloat() * 3.5f + 1f
+            scaleX = viewModel.starSizeBoosterModifier() + 1
             scaleY = scaleX
 
             starW *= scaleX
             starH *= scaleY
 
-            translationX = Math.random().toFloat() *
-                    container.width - starW / 2
+            translationX = viewModel.starSpawnWidthBoosterModifier() * container.width
 
             setOnClickListener {
                 when(starType){
@@ -107,7 +102,7 @@ class StarView @JvmOverloads constructor(
         val mover = ObjectAnimator.ofFloat(
             newStar, View.TRANSLATION_Y,
             -starH, container.height + starH
-        ).apply { interpolator = AccelerateInterpolator(1f) }
+        ).apply { interpolator = AccelerateInterpolator(viewModel.starSpeedBoosterModifier()) }
 
         val rotator = ObjectAnimator.ofFloat(
             newStar, View.ROTATION,
