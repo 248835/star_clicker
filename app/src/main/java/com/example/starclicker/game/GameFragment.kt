@@ -81,15 +81,21 @@ class GameFragment : Fragment(), SensorEventListener {
 
         starView = requireActivity().findViewById(R.id.starView)
 
-        starView.setOnStarClickListener {
-            viewModel.addPoints(10)
-           /* binding.root.findNavController().navigate(
-                GameFragmentDirections.actionGameFragmentToGameOverFragment(
-                    viewModel.score.value ?: 0,
-                    args.difficultyLevel
+        viewModel.score.observe(this, {
+            if(it <= 0){
+                binding.root.findNavController().navigate(
+                    GameFragmentDirections.actionGameFragmentToGameOverFragment(
+                        viewModel.score.value ?: 0,
+                        args.difficultyLevel
+                    )
                 )
-            )*/
+            }
+        })
+
+        starView.setOnStarClickListener {
+            viewModel.addPoints(40)
         }
+
 
         starView.setOnSpecialStarClickListener {
             Toast.makeText(requireContext(),"Yay",Toast.LENGTH_SHORT).show()
@@ -114,6 +120,7 @@ class GameFragment : Fragment(), SensorEventListener {
                 countdownTextView.text = countdown.toString()
             else{
                 starView.startStars()
+                viewModel.decreasePointsOverTime()
 
                 countdownTextView.text = "Start"
                 countdownTextView.animate()

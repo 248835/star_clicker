@@ -56,7 +56,7 @@ class GameViewModel() : ViewModel() {
         }
     }
 
-    private val _score = MutableLiveData(0)
+    private val _score = MutableLiveData(100)
     val score: LiveData<Int>
         get() = _score
 
@@ -79,6 +79,14 @@ class GameViewModel() : ViewModel() {
         }
     }
 
+    fun decreasePointsOverTime(){
+        viewModelScope.launch {
+            while (true) {
+                delay(1000L)
+                addPoints(-10)
+            }
+        }
+    }
 
     fun deactivateAfterDelay(booster : Booster){
         viewModelScope.launch {

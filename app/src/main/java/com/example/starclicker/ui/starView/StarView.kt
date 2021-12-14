@@ -80,7 +80,7 @@ class StarView @JvmOverloads constructor(
                 LayoutParams.WRAP_CONTENT
             )
 
-            scaleX = viewModel.starSizeBoosterModifier() + 1
+            scaleX = 3.0f * viewModel.starSizeBoosterModifier()
             scaleY = scaleX
 
             starW *= scaleX
