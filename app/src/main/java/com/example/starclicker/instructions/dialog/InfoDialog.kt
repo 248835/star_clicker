@@ -9,7 +9,11 @@ class InfoDialog private constructor() : DialogFragment(){
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle("Instrukcja")
-            .setMessage("Tutaj powinna być instrukcja gry")
+            .setMessage("Gra polega na zdobywaniu punktów poprzez klikanie gwiazdek." +
+                        " Są 2 typy gwiazdek: zwykłe - dają punkty, specjalne - uruchamiają tryb trzęsienia." +
+                        " W trybie trzęsienia należy trząść telefonem, aby zdobywać punkty." +
+                        " W trakcie gry regularnie liczba punktów spada. Jeśli spadnie do 0 gra się kończy." +
+                        " W trakcie gry za zdobyte punkty można kupić boostery, które ułatwiają rozgrywkę.")
             .setNeutralButton("ok",null)
             .create()
     }
