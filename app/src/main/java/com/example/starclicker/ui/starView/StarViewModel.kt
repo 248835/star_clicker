@@ -13,23 +13,25 @@ class StarViewModel: ViewModel() {
     val isRunning: Boolean
         get() = _isRunning
 
-    private var _starDelay = 1000L
+    private var lastSpawnedSpecialTime = 0L
+
+    private var specialSpawnTimePeriod = 10000L
 
     fun starSizeBoosterModifier(): Float {
         return if(Booster.ENLARGE.active.value!!) 2f else 1f
     }
 
     fun starSpawnWidthBoosterModifier() : Float {
-        return if(Booster.CENTER.active.value!!) 0.5f else 1f
+        return if(Booster.CENTER.active.value!!) 0.25f + Math.random().toFloat() * 0.5f else Math.random().toFloat()
     }
 
     fun starSpeedBoosterModifier() : Float {
         return if(Booster.SLOW.active.value!!) 0.5f else 1f
     }
 
-
-    fun setStarDelay(delay: Long) {
-        _starDelay = delay
+    fun starSpawnDelay() : Long
+    {
+        return (500L + Math.random() * 1000L).toLong();
     }
 
     fun start() {
@@ -40,11 +42,25 @@ class StarViewModel: ViewModel() {
         _isRunning = false
     }
 
-    fun shower(star: () -> Unit) {
+    fun shower(star: () -> Unit, specialStar: () -> Unit) {
         viewModelScope.launch {
             while (_isRunning) {
-                star.invoke()
-                delay(_starDelay)
+
+                val delay = starSpawnDelay()
+
+                lastSpawnedSpecialTime += delay
+
+                if(lastSpawnedSpecialTime > specialSpawnTimePeriod)
+                {
+                    lastSpawnedSpecialTime -= specialSpawnTimePeriod;
+                    specialStar.invoke()
+                }
+                else
+                {
+                    star()
+                }
+
+                delay(delay)
             }
         }
     }
