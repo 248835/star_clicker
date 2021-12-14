@@ -81,7 +81,7 @@ class GameFragment : Fragment(), SensorEventListener {
 
         starView = requireActivity().findViewById(R.id.starView)
 
-        viewModel.score.observe(this, {
+        viewModel.progressBar.observe(this, {
             if(it <= 0){
                 binding.root.findNavController().navigate(
                     GameFragmentDirections.actionGameFragmentToGameOverFragment(

@@ -9,9 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class GameViewModel() : ViewModel() {
-
-    private var _starDelay = 1000L
+class GameViewModel : ViewModel() {
 
     //Shaking mode variables
     private enum class AccDirection {TOP, BOTTOM}
@@ -67,23 +65,15 @@ class GameViewModel() : ViewModel() {
     fun addPoints(points: Int) {
         val newScore = _score.value!! + points
         _score.value = newScore
-        _progressBar.value = _score.value!! % 100 //TODO: Ogarnąć jak punkty mają się do rozmiaru paska progresu
-    }
-
-    fun randomValues() {
-        viewModelScope.launch {
-            while (true) {
-                delay(_starDelay)
-                addPoints((Math.random() * 100).toInt())
-            }
-        }
+        if (_progressBar.value!! < 100)
+            _progressBar.value = _progressBar.value?.plus(points)
     }
 
     fun decreasePointsOverTime(){
         viewModelScope.launch {
             while (true) {
-                delay(1000L)
-                addPoints(-10)
+                delay(100L)
+                _progressBar.value = _progressBar.value?.dec()
             }
         }
     }
