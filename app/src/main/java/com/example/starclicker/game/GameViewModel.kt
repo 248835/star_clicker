@@ -102,7 +102,7 @@ class GameViewModel() : ViewModel() {
 
         //Shaking mode constants
         private const val ACC_THRESHOLD_TO_GET_POINTS = 1f
-        private const val POINTS_PER_SHAKE = 10
+        private const val POINTS_PER_SHAKE = 40
         private const val SHAKING_MODE_DURATION = 8000L
     }
 }
